@@ -24,9 +24,6 @@ try {
   fetchBreeds().then(data => renderSelect(data));
 } catch (error) {
   console.log(error);
-  //   Notiflix.Notify.failure(
-  //     `Oops! Something went wrong! Try reloading the page! Error: ${error}`
-  //   );
 }
 
 function renderSelect(breeds) {
@@ -42,34 +39,51 @@ function renderSelect(breeds) {
   loader.style.display = 'none';
   errorEl.style.display = 'none';
 }
-
-breedSelect.addEventListener('change', e => {
+breedSelect.addEventListener('change', async e => {
   catInfo.innerHTML = '';
 
   loader.style.display = 'block';
   errorEl.style.display = 'none';
 
-  fetchCatByBreed(e.target.value).then(data => renderCat(data[0]));
+  try {
+    const data = await fetchCatByBreed(e.target.value);
+    renderCat(data[0]);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    loader.style.display = 'none';
+  }
 });
 
-function renderCat(catData) {
-  const { url } = catData;
-  const { description, name, temperament } = catData.breeds[0];
+async function renderCat(catData) {
+  if (catData) {
+    try {
+      const { url } = catData;
+      const { description, name, temperament } = catData.breeds[0];
 
-  catInfo.insertAdjacentHTML(
-    'beforeend',
-    `<div>
-  <h2>${name}</h2>
-  <img width="500" src="${url}" alt="${name}" />
-  <p><strong>Description: </strong>${description}</p>
-  <p><strong>Temperament: </strong>${temperament}</p>
-  </div>`
-  );
+      catInfo.insertAdjacentHTML(
+        'beforeend',
+        `<div class="cat-wrapper">
+          <h2 class="cat-title">${name}</h2>
+          <img class="cat-img" width="450" src="${url}" alt="${name}" />
+          <div class="description-wrapper">
+          <div class="shadow">
+          <p class="cat-description"><strong>Description: </strong>${description}</p>
+          <p class="cat-temperament"><strong>Temperament: </strong>${temperament}</p>
+          </div>
+          </div>
+        </div>`
+      );
 
-  loader.style.display = 'none';
-  errorEl.style.display = 'none';
-
-  // const slim = new SlimSelect({
-  //   select: '.breed-select',
-  // });
+      errorEl.style.display = 'none';
+    } catch (error) {
+      Notiflix.Notify.failure(
+        `Oops! Something went wrong! Try reloading the page!`
+      );
+    }
+  } else {
+    Notiflix.Notify.failure(
+      `Error loading content. Please try refreshing the page.`
+    );
+  }
 }
