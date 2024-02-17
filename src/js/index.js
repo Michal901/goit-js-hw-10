@@ -2,12 +2,6 @@ import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import Notiflix from 'notiflix';
 import SlimSelect from 'slim-select';
 
-// Notiflix.Notify.init({
-//   width: '300px',
-//   position: 'right-top',
-//   timeout: 3500,
-// });
-
 const breedSelect = document.querySelector('.breed-select');
 const catInfo = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
@@ -16,6 +10,13 @@ const errorEl = document.querySelector('.error');
 const slim = new SlimSelect({
   select: '.breed-select',
 });
+
+function nextItem() {
+  const previousSlide =
+    document.querySelectorAll('.background')[currentSlideNumber - 1];
+  previousSlide.classList.remove('up-scroll');
+  previousSlide.classList.add('down-scroll');
+}
 
 try {
   loader.style.display = 'block';
@@ -65,7 +66,7 @@ async function renderCat(catData) {
         'beforeend',
         `<div class="cat-wrapper">
           <h2 class="cat-title">${name}</h2>
-          <img class="cat-img" width="450" src="${url}" alt="${name}" />
+          <img class="cat-img" src="${url}" alt="${name}" />
           <div class="description-wrapper">
           <div class="shadow">
           <p class="cat-description"><strong>Description: </strong>${description}</p>
@@ -87,3 +88,5 @@ async function renderCat(catData) {
     );
   }
 }
+
+// ------------- VARIABLES ------------- //

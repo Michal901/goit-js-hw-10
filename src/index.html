@@ -9,20 +9,43 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
+  <script src="https://kit.fontawesome.com/79ef8c933c.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="slimSelect/slimselect.css">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="./css/style.css" />
   <script src="slimSelect/slimselect.min.js"></script>
 
 </head>
 
-<body>
-  <select id="selectElement" class="breed-select">
-  </select>
-  <p class="loader"><span class="loader"></span></p>
-  <p class="error">Oops! Something went wrong! Try reloading the page!</p>
-  <div class="cat-info"></div>
+<div class="container">
+  <section class="background">
+    <div class="content-wrapper">
+      <p class="content-title">Welcome to the magical world of cats!</p>
+      <p class="content-subtitle">Discover the extraordinary secrets <br> and charm of
+        this fascinating creature.</p>
+      <p class="content-subtitle-2">Are you ready for a journey into the land of cat magic? <br>
+        <span class="scroll-down">Scroll down !</span>
+      </p>
+      <i class="fa-solid fa-arrow-down"></i>
 
-  <script src="index.js" type="module"></script>
+    </div>
+  </section>
+  <section class="background">
+    <div class="content-wrapper">
+      <select id="selectElement" class="breed-select">
+        <img src="./img/magictheme1.jpg" alt="">
+      </select>
+      <p class="error">Oops! Something went wrong! Try reloading the page!</p>
+      <div class="cat-info"></div>
+    </div>
+  </section>
+
+</div>
+<p class="loader"><span class="loader"></span></p>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+<script src="./js/index.js" type="module"></script>
+<script src="./js/paralax.js" type="module"></script>
 </body>
 
 </html>
