@@ -13,6 +13,10 @@ const catInfo = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
 const errorEl = document.querySelector('.error');
 
+const slim = new SlimSelect({
+  select: '.breed-select',
+});
+
 try {
   loader.style.display = 'block';
   errorEl.style.display = 'none';
@@ -32,6 +36,9 @@ function renderSelect(breeds) {
     })
     .join('');
   breedSelect.insertAdjacentHTML('beforeend', markup);
+
+  slim.setData(Array.from(breedSelect.options));
+
   loader.style.display = 'none';
   errorEl.style.display = 'none';
 }
@@ -62,7 +69,7 @@ function renderCat(catData) {
   loader.style.display = 'none';
   errorEl.style.display = 'none';
 
-  const slim = new SlimSelect({
-    select: '#selectElement',
-  });
+  // const slim = new SlimSelect({
+  //   select: '.breed-select',
+  // });
 }
