@@ -48,6 +48,7 @@ breedSelect.addEventListener('change', e => {
 function renderCat(catData) {
   const { url } = catData;
   const { description, name, temperament } = catData.breeds[0];
+
   catInfo.insertAdjacentHTML(
     'beforeend',
     `<div>
@@ -60,4 +61,8 @@ function renderCat(catData) {
 
   loader.style.display = 'none';
   errorEl.style.display = 'none';
+
+  const slim = new SlimSelect({
+    select: '#selectElement',
+  });
 }
