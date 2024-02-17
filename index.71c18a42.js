@@ -1,0 +1,2 @@
+!function(){var e=!1,t=/Firefox/i.test(navigator.userAgent),r=/MSIE/i.test(navigator.userAgent)||/Trident.*rv\:11\./i.test(navigator.userAgent),l=0,n=document.querySelectorAll(".background").length;var o=t?"DOMMouseScroll":"wheel";window.addEventListener(o,_.throttle((function(o){var a,s;a=t?-120*o.detail:r?-o.deltaY:o.wheelDelta,e||a<=-30&&(e=!0,l!==n-1&&(l++,(s=document.querySelectorAll(".background")[l-1]).classList.remove("up-scroll"),s.classList.add("down-scroll")))}),60),!1)}();
+//# sourceMappingURL=index.71c18a42.js.map
