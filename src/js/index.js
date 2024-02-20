@@ -88,5 +88,3 @@ async function renderCat(catData) {
     );
   }
 }
-
-// ------------- VARIABLES ------------- //
